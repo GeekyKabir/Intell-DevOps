@@ -11,7 +11,7 @@ pipeline {
         stage('Deploy to Prod') {
             steps {
                 sh '''
-                  DEST=/home/kabir/prod_app
+                  DEST=/home/ubuntu/prod_app
                   mkdir -p "$DEST"
                   rsync -a --delete . "$DEST/"
                 '''
