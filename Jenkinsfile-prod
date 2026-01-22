@@ -1,0 +1,21 @@
+pipeline {
+    agent { label 'prod-node' }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'master', url: 'https://github.com/GeekyKabir/Intell-DevOps.git'
+            }
+        }
+
+        stage('Deploy to Prod') {
+            steps {
+                sh '''
+                  DEST=/home/kabir/prod_app
+                  mkdir -p "$DEST"
+                  rsync -a --delete . "$DEST/"
+                '''
+            }
+        }
+    }
+}
