@@ -1,0 +1,21 @@
+pipeline {
+    agent { label 'test-node' }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'test', url: 'https://github.com/GeekyKabir/Intell-DevOps.git'
+            }
+        }
+
+        stage('Deploy to Test') {
+            steps {
+                sh '''
+                  DEST=/home/kabir/test_app
+                  mkdir -p "$DEST"
+                  rsync -a --delete . "$DEST/"
+                '''
+            }
+        }
+    }
+}
