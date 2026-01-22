@@ -11,7 +11,7 @@ pipeline {
         stage('Deploy to Test') {
             steps {
                 sh '''
-                  DEST=/home/kabir/test_app
+                  DEST=/home/ubuntu/test_app
                   mkdir -p "$DEST"
                   rsync -a --delete . "$DEST/"
                 '''
